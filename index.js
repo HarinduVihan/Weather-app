@@ -1,6 +1,10 @@
 const apiKey = "bd8934559da2bb0375605efaea9ad6f6";
 const apiUrl =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+
+const forcastApiKey = "DX93C8KMYXXTY3ZJRY3EYJ3X5";
+const forcastApiUrl =
+  "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
 const http = new XMLHttpRequest();
 
 const searchBox = document.querySelector(".search input");
@@ -43,6 +47,7 @@ async function checkWeather(city) {
   if (response.status == 404 || city == "") {
     document.querySelector(".error").style.display = "block";
     document.querySelector(".weather").style.display = "none";
+    document.querySelector(".loader").style.display = "none";
   } else {
     var data = await response.json();
 
@@ -60,7 +65,50 @@ async function checkWeather(city) {
     document.querySelector(".weather").style.display = "block";
     document.querySelector(".error").style.display = "none";
     document.querySelector(".loader").style.display = "none";
+
+    checkForcast(city);
   }
+}
+
+function formatDate(date, format) {
+  const padZero = (num) => num.toString().padStart(2, "0");
+  const map = {
+    yyyy: date.getFullYear(),
+    yy: date.getFullYear().toString().slice(-2),
+    mm: padZero(date.getMonth() + 1),
+    dd: padZero(date.getDate()),
+  };
+  return format.replace(/yyyy|yy|mm|dd/g, (matched) => map[matched]);
+}
+
+const today = new Date();
+const yesterdayDate = new Date(today);
+yesterdayDate.setDate(today.getDate() - 1);
+
+const tomorrowDate = new Date(today);
+tomorrowDate.setDate(today.getDate() + 1);
+
+let yesterday = formatDate(yesterdayDate, "yyyy-mm-dd");
+let tommorow = formatDate(tomorrowDate, "yyyy-mm-dd");
+
+async function checkForcast(city) {
+  const response = await fetch(
+    forcastApiUrl + city + `/${yesterday}/${tommorow}?key=${forcastApiKey}`
+  );
+
+  if (!response.ok) {
+    const text = await response.text(); // read raw text if not JSON
+    console.error("Forecast API error:", text);
+    document.querySelector(".yesterday").innerHTML = "Maximum daily ";
+    document.querySelector(".tommorow").innerHTML = "cost exceeded";
+    return;
+  }
+
+  const data = await response.json();
+  console.log(data);
+
+  document.querySelector(".yesterday").innerHTML = data.days[0].conditions;
+  document.querySelector(".tommorow").innerHTML = data.days[2].conditions;
 }
 
 searchBtn.addEventListener("click", () => {
