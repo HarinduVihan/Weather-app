@@ -1,10 +1,41 @@
 const apiKey = "bd8934559da2bb0375605efaea9ad6f6";
 const apiUrl =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+const http = new XMLHttpRequest();
 
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
+
+function findMyCoordinates() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const bdcAPI = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${position.coords.latitude}&longitude=${position.coords.longitude}`;
+        getAPI(bdcAPI);
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
+  } else {
+    alert("Geolocation is not supported by your browser");
+  }
+}
+
+function getAPI(bdcAPI) {
+  http.open("GET", bdcAPI);
+  http.send();
+  http.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      console.log(this.responseText);
+      const results = JSON.parse(this.responseText);
+      checkWeather(results.locality);
+    }
+  };
+}
+
+findMyCoordinates();
 
 async function checkWeather(city) {
   const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
