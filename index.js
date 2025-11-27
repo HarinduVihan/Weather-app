@@ -50,6 +50,7 @@ async function checkWeather(city) {
     document.querySelector(".error").style.display = "block";
     document.querySelector(".weather").style.display = "none";
     document.querySelector(".loader").style.display = "none";
+    document.querySelector(".forcast").style.display = "none";
   } else {
     var data = await response.json();
 
