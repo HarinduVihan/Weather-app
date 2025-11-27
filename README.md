@@ -9,3 +9,7 @@ It will also show the yesterday weather status and tomorow weather status.
 ## Web Site URL
 
 https://harinduvihan.github.io/Weather-app/
+
+## Project URL
+
+https://roadmap.sh/projects/weather-app
