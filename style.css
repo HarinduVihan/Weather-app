@@ -33,6 +33,10 @@ body {
   display: flex;
 }
 
+.forcast {
+  display: none;
+}
+
 .search {
   width: 100%;
   display: flex;
