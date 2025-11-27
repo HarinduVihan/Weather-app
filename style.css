@@ -33,9 +33,9 @@ body {
   margin: 5px;
 }
 
-/* .forcast {
+.forcast {
   display: none;
-} */
+}
 
 .card-container {
   display: flex;
