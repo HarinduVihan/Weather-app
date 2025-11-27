@@ -11,6 +11,7 @@ const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
 
+// function to find users current locatiion
 function findMyCoordinates() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
@@ -41,6 +42,7 @@ function getAPI(bdcAPI) {
 
 findMyCoordinates();
 
+//function to get the weather status
 async function checkWeather(city) {
   const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
@@ -70,6 +72,7 @@ async function checkWeather(city) {
   }
 }
 
+//function to format date
 function formatDate(date, format) {
   const padZero = (num) => num.toString().padStart(2, "0");
   const map = {
@@ -81,16 +84,21 @@ function formatDate(date, format) {
   return format.replace(/yyyy|yy|mm|dd/g, (matched) => map[matched]);
 }
 
+// get the current date
 const today = new Date();
+
+//get yeaterday date
 const yesterdayDate = new Date(today);
 yesterdayDate.setDate(today.getDate() - 1);
 
+//get tomorrow date
 const tomorrowDate = new Date(today);
 tomorrowDate.setDate(today.getDate() + 1);
 
 let yesterday = formatDate(yesterdayDate, "yyyy-mm-dd");
 let tommorow = formatDate(tomorrowDate, "yyyy-mm-dd");
 
+//function to get whether for forcasting
 async function checkForcast(city) {
   const response = await fetch(
     forcastApiUrl + city + `/${yesterday}/${tommorow}?key=${forcastApiKey}`
