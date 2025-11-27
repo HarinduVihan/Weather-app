@@ -117,6 +117,19 @@ async function checkForcast(city) {
 
   document.querySelector(".yesterday").innerHTML = data.days[0].conditions;
   document.querySelector(".tommorow").innerHTML = data.days[2].conditions;
+
+  //get the 24 hour forcast
+
+  for (let i = 0; i < 24; i++) {
+    document.querySelector(".hour" + i).innerHTML =
+      data.days[1].hours[i].datetime;
+    document.querySelector(".temp" + i).innerHTML =
+      data.days[1].hours[i].temp + "°c";
+    document.querySelector(".weather" + i).innerHTML =
+      data.days[1].hours[i].conditions;
+  }
+
+  document.querySelector(".forcast").style.display = "block";
 }
 
 searchBtn.addEventListener("click", () => {
