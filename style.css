@@ -14,27 +14,34 @@ body {
   max-width: 470px;
   background: linear-gradient(135deg, #fe9800, #932397);
   color: #fff;
-  margin: 100px auto 0;
+  margin: 50px auto 0;
   border-radius: 20px;
   padding: 40px 35px;
   text-align: center;
 }
 
 .cards {
-  width: 90%;
-  max-width: 470px;
   background: linear-gradient(135deg, #fe9800, #932397);
   color: #fff;
-  margin: 10px auto;
+  margin: 10px 10px;
   border-radius: 20px;
   padding: 10px 10px;
   text-align: center;
-  justify-content: space-around;
-  display: flex;
 }
 
-.forcast {
+.cards p {
+  margin: 5px;
+}
+
+/* .forcast {
   display: none;
+} */
+
+.card-container {
+  display: flex;
+  overflow-x: scroll;
+  scrollbar-color: orange rgb(255, 0, 221);
+  scrollbar-width: thin;
 }
 
 .search {
