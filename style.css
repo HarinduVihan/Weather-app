@@ -20,6 +20,19 @@ body {
   text-align: center;
 }
 
+.cards {
+  width: 90%;
+  max-width: 470px;
+  background: linear-gradient(135deg, #fe9800, #932397);
+  color: #fff;
+  margin: 10px auto;
+  border-radius: 20px;
+  padding: 10px 10px;
+  text-align: center;
+  justify-content: space-around;
+  display: flex;
+}
+
 .search {
   width: 100%;
   display: flex;

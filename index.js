@@ -68,7 +68,7 @@ async function checkWeather(city) {
     document.querySelector(".error").style.display = "none";
     document.querySelector(".loader").style.display = "none";
 
-    checkForcast(city);
+    //checkForcast(city);
   }
 }
 
@@ -117,6 +117,16 @@ async function checkForcast(city) {
 
   document.querySelector(".yesterday").innerHTML = data.days[0].conditions;
   document.querySelector(".tommorow").innerHTML = data.days[2].conditions;
+
+  document.querySelector(".hour0").innerHTML = data.days[1].hours[0].datetime;
+  document.querySelector(".temp0").innerHTML = data.days[1].hours[0].temp;
+  document.querySelector(".weather0").innerHTML =
+    data.days[1].hours[0].conditions;
+
+  document.querySelector(".hour1").innerHTML = data.days[1].hours[1].datetime;
+  document.querySelector(".temp1").innerHTML = data.days[1].hours[1].temp;
+  document.querySelector(".weather1").innerHTML =
+    data.days[1].hours[1].conditions;
 }
 
 searchBtn.addEventListener("click", () => {
