@@ -63,10 +63,15 @@ Add your API keys and the base URLs to this file in the following JSON format:
 JSON
 
 {
+
   "API_KEY": "YOUR_OPENWEATHERMAP_API_KEY",
+  
   "API_URL": "https://api.openweathermap.org/data/2.5/weather?units=metric&q=",
+  
   "FORCAST_API_KEY": "YOUR_VISUAL_CROSSING_API_KEY",
+  
   "FORCAST_API_URL": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
+  
 }
 
 The application's JavaScript fetches these values from this file on startup.
