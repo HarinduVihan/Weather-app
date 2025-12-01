@@ -8,6 +8,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # This is the critical line
+      pages: write # Good practice for GH Pages deployments
+      id-token: write # If you're using OIDC, but 'contents: write' is key here
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
