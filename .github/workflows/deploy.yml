@@ -1,0 +1,35 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # This is the critical line
+      pages: write # Good practice for GH Pages deployments
+      id-token: write # If you're using OIDC, but 'contents: write' is key here
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create config.json from Secrets
+        run: |
+          echo "{
+            \"API_KEY\": \"${{ secrets.API_KEY_SECRET }}\",
+            \"API_URL\": \"${{ secrets.API_URL_SECRET }}\",
+            \"FORCAST_API_KEY\": \"${{ secrets.FORCAST_API_KEY_SECRET }}\",
+            \"FORCAST_API_URL\": \"${{ secrets.FORCAST_API_URL_SECRET }}\"
+          }" > config.json
+        # The file is created here
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          exclude_assets: '.gitignore'
+        # The file is deployed and then the runner is destroyed, deleting config.json
