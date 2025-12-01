@@ -23,8 +23,6 @@ fetch(basePath + "config.json")
   })
   .catch((err) => console.error("Failed to load config:", err));
 
-const http = new XMLHttpRequest();
-
 const searchBox = document.querySelector(".search input");
 const searchBtn = document.querySelector(".search button");
 const weatherIcon = document.querySelector(".weather-icon");
@@ -46,16 +44,28 @@ function findMyCoordinates() {
   }
 }
 
-function getAPI(bdcAPI) {
-  http.open("GET", bdcAPI);
-  http.send();
-  http.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      console.log(this.responseText);
-      const results = JSON.parse(this.responseText);
-      checkWeather(results.locality);
+// Convert getAPI to an async function using the modern fetch API
+async function getAPI(bdcAPI) {
+  try {
+    const response = await fetch(bdcAPI);
+
+    if (!response.ok) {
+      // Throw an error for bad HTTP statuses (4xx or 5xx)
+      throw new Error(`Reverse Geocoding failed with status: ${response.status}`);
     }
-  };
+
+    const results = await response.json();
+    console.log(JSON.stringify(results)); // Use JSON.stringify for clean logging
+
+    // Pass the locality to the weather function
+    checkWeather(results.locality);
+
+  } catch (err) {
+    // Log any errors that occurred during fetch or parsing
+    console.error("Error fetching locality data:", err);
+    // You might want to display a user-friendly error here too
+    alert("Could not determine your location. Please use the search box.");
+  }
 }
 
 // findMyCoordinates();
