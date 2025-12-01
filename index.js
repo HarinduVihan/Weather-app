@@ -1,7 +1,17 @@
 let API_KEY, API_URL, FORCAST_API_KEY, FORCAST_API_URL;
 
-fetch("config.json")
-  .then((response) => response.json())
+// Dynamically determine the base path (for both local and deployed environments)
+const isGithubPages = window.location.hostname.endsWith("github.io");
+const basePath = isGithubPages ? "/Weather-app/" : ""; // Use your repository name
+
+fetch(basePath + "config.json")
+  .then((response) => {
+    // Check for 404 explicitly before parsing
+    if (!response.ok) {
+      throw new Error(`Failed to load config: HTTP status ${response.status}`);
+    }
+    return response.json();
+  })
   .then((config) => {
     API_KEY = config.API_KEY;
     API_URL = config.API_URL;
