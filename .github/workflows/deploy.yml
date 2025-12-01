@@ -19,10 +19,10 @@ jobs:
       - name: Create config.json from Secrets
         run: |
           echo "{
-            \"API_KEY\": \"${{ secrets.API_KEY_SECRET }}\",
-            \"API_URL\": \"${{ secrets.API_URL_SECRET }}\",
-            \"FORCAST_API_KEY\": \"${{ secrets.FORCAST_API_KEY_SECRET }}\",
-            \"FORCAST_API_URL\": \"${{ secrets.FORCAST_API_URL_SECRET }}\"
+            \"API_KEY\": \"${{ secrets.API_KEY }}\",
+            \"API_URL\": \"${{ secrets.API_URL }}\",
+            \"FORCAST_API_KEY\": \"${{ secrets.FORCAST_API_KEY }}\",
+            \"FORCAST_API_URL\": \"${{ secrets.FORCAST_API_URL }}\"
           }" > config.json
         # The file is created here
 
