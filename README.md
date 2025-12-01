@@ -48,6 +48,7 @@ Visual Crossing: For forecast data.
 (Note: The BigDataCloud API for reverse geocoding is used without a key in the existing code.)
 
 2. Setup and Configuration
+
 Clone the repository:
 
 Bash
@@ -78,29 +79,7 @@ The application's JavaScript fetches these values from this file on startup.
 
 Run a Local Web Server:
 
-You cannot simply open index.html due to security restrictions (fetch and geolocation). You must use a local server.
-
-Option A: VS Code Live Server (Recommended)
-
-Install the "Live Server" extension by Ritwick Dey.
-
-Right-click index.html in your file explorer and select "Open with Live Server".
-
-Option B: Python's Simple Server
-
-Open your terminal in the project root directory and run:
-
-Bash
-
-# For Python 3
-
-python3 -m http.server 8000
-
-# For Python 2
-
-python -m SimpleHTTPServer 8000 
-
-Open your browser and navigate to: http://localhost:8000
+VS Code Live Server (Recommended)
 
 ---
 
