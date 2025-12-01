@@ -35,6 +35,7 @@ It detects your current location, shows real-time weather conditions, and provid
 
 ---
 🚀 How to Run This Project Locally
+
 To run this application on your local machine, you need to set up the necessary API keys and use a local web server (since modern browsers restrict direct file system access for fetch and geolocation).
 
 1. Prerequisites
@@ -67,6 +68,7 @@ JSON
   "FORCAST_API_KEY": "YOUR_VISUAL_CROSSING_API_KEY",
   "FORCAST_API_URL": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
 }
+
 The application's JavaScript fetches these values from this file on startup.
 
 Run a Local Web Server:
@@ -86,9 +88,13 @@ Open your terminal in the project root directory and run:
 Bash
 
 # For Python 3
+
 python3 -m http.server 8000
+
 # For Python 2
+
 python -m SimpleHTTPServer 8000 
+
 Open your browser and navigate to: http://localhost:8000
 
 ---
