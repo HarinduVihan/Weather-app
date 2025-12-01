@@ -1,10 +1,18 @@
-const apiKey = "bd8934559da2bb0375605efaea9ad6f6";
-const apiUrl =
-  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+let API_KEY, API_URL, FORCAST_API_KEY, FORCAST_API_URL;
 
-const forcastApiKey = "DX93C8KMYXXTY3ZJRY3EYJ3X5";
-const forcastApiUrl =
-  "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
+fetch("config.json")
+  .then((response) => response.json())
+  .then((config) => {
+    API_KEY = config.API_KEY;
+    API_URL = config.API_URL;
+    FORCAST_API_KEY = config.FORCAST_API_KEY;
+    FORCAST_API_URL = config.FORCAST_API_URL;
+
+    // Start app only after config is ready
+    findMyCoordinates();
+  })
+  .catch((err) => console.error("Failed to load config:", err));
+
 const http = new XMLHttpRequest();
 
 const searchBox = document.querySelector(".search input");
@@ -40,11 +48,11 @@ function getAPI(bdcAPI) {
   };
 }
 
-findMyCoordinates();
+// findMyCoordinates();
 
 //function to get the weather status
 async function checkWeather(city) {
-  const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+  const response = await fetch(API_URL + city + `&appid=${API_KEY}`);
 
   if (response.status == 404 || city == "") {
     document.querySelector(".error").style.display = "block";
@@ -102,7 +110,7 @@ let tommorow = formatDate(tomorrowDate, "yyyy-mm-dd");
 //function to get whether for forcasting
 async function checkForcast(city) {
   const response = await fetch(
-    forcastApiUrl + city + `/${yesterday}/${tommorow}?key=${forcastApiKey}`
+    FORCAST_API_URL + city + `/${yesterday}/${tommorow}?key=${FORCAST_API_KEY}`
   );
 
   if (!response.ok) {
