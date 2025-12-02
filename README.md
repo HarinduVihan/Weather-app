@@ -34,52 +34,54 @@ It detects your current location, shows real-time weather conditions, and provid
   - [BigDataCloud](https://www.bigdatacloud.com/) – Reverse geocoding for location detection
 
 ---
-🚀 How to Run This Project Locally
+## 🚀 How to Run This Project Locally
 
 To run this application on your local machine, you need to set up the necessary API keys and use a local web server (since modern browsers restrict direct file system access for fetch and geolocation).
 
 1. Prerequisites
 API Keys: Obtain keys for the following services:
 
-OpenWeatherMap: For current weather data.
-
-Visual Crossing: For forecast data.
-
-(Note: The BigDataCloud API for reverse geocoding is used without a key in the existing code.)
+  * OpenWeatherMap: For current weather data.
+  * Visual Crossing: For forecast data.
+  * (Note: The BigDataCloud API for reverse geocoding is used without a key in the existing code.)
 
 2. Setup and Configuration
 
-Clone the repository:
+   **Clone the repository:**
 
-Bash
+   ```bash
+   git clone https://github.com/HarinduVihan/Weather-app.git
+   cd Weather-app
+   ```
 
-git clone https://github.com/HarinduVihan/Weather-app.git
-cd Weather-app
-Create the Configuration File:
+   **Create the Configuration File:**
 
-In the root of the project directory, create a new file named config.json.
+   In the root of the project directory, create a new file named config.json.
 
-Add your API keys and the base URLs to this file in the following JSON format:
+   Add your API keys and the base URLs to this file in the following JSON format:
 
-JSON
+   ```JSON
 
-{
+   {
 
-  "API_KEY": "YOUR_OPENWEATHERMAP_API_KEY",
+   "API_KEY": "YOUR_OPENWEATHERMAP_API_KEY",
   
-  "API_URL": "https://api.openweathermap.org/data/2.5/weather?units=metric&q=",
+   "API_URL": "https://api.openweathermap.org/data/2.5/weather?units=metric&q=",
   
-  "FORCAST_API_KEY": "YOUR_VISUAL_CROSSING_API_KEY",
+   "FORCAST_API_KEY": "YOUR_VISUAL_CROSSING_API_KEY",
   
-  "FORCAST_API_URL": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
+   "FORCAST_API_URL": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
   
-}
+   }
+   ```
+   
+   The application's JavaScript fetches these values from this file on startup.
 
-The application's JavaScript fetches these values from this file on startup.
+3. Run a Local Web Server:
 
-Run a Local Web Server:
+   You cannot simply open index.html due to security restrictions (fetch and geolocation). You must use a local server.
 
-VS Code Live Server (Recommended)
+   **VS Code Live Server (Recommended)**
 
 ---
 
