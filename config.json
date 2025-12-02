@@ -1,1 +1,6 @@
-
+{
+  "API_KEY": "bd8934559da2bb0375605efaea9ad6f6",
+  "API_URL": "https://api.openweathermap.org/data/2.5/weather?units=metric&q=",
+  "FORCAST_API_KEY": "DX93C8KMYXXTY3ZJRY3EYJ3X5",
+  "FORCAST_API_URL": "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
+}
